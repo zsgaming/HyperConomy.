@@ -2,51 +2,36 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>regalowl.hyperconomy</groupId>
-	<artifactId>hyperconomy</artifactId>
-	<version>0.975.8-SNAPSHOT</version>
-	<name>HyperConomy</name>
-	<description>HyperConomy creates a global market that can be accessed via designated shops. Prices follow a hyperbolic curve, and vary based on the stock of the item or enchantment. Everything in the market can be customized, from the items themselves to the names of the shops. HyperConomy supports every item in Minecraft, even the normally impossible to obtain ones. It allows a great deal of control over the economy, allowing you to edit any setting without a server restart.</description>
+	<artifactId>hyperconomy 2</artifactId>
+	<version>2.00.1-SNAPSHOT</version>
+	<name>HyperConomy 2</name>
+	<description>HyperConomy 2 creates a global market that can be accessed via designated shops. Prices follow a hyperbolic curve, and vary based on the stock of the item or enchantment. Everything in the market can be customized, from the items themselves to the names of the shops. HyperConomy supports every item in Minecraft, even the normally impossible to obtain ones. It allows a great deal of control over the economy, allowing you to edit any setting without a server restart.</description>
 	<repositories>
 		<repository>
-			<id>Articdive-repo</id>
-			<url>https://nexus.articdive.de/repository/maven-public/</url>
+			<id>paper-repo</id>
+			<url>https://papermc.io/repo/repository/maven-public/</url>
 		</repository>
 		<repository>
-			<id>Sonatype-public</id>
-			<name>SnakeYAML repository</name>
-			<url>http://oss.sonatype.org/content/groups/public/</url>
-		</repository>
-		<repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-		</repository>
-		<repository>
-			<id>vault-repo</id>
-			<url>http://nexus.hc.to/content/repositories/pub_releases</url>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
 		</repository>
 	</repositories>
 	<scm>
-		<developerConnection>scm:git:git@github.com:RegalOwl/HyperConomy.git</developerConnection>
-		<connection>scm:git:git://github.com/RegalOwl/HyperConomy.git</connection>
-		<url>https://github.com/RegalOwl/HyperConomy/tree/master/</url>
+		<developerConnection>scm:git:git@github.com:ZSGaming/HyperConomy.git</developerConnection>
+		<connection>scm:git:git://github.com/ZSGaming/HyperConomy.git</connection>
+		<url>https://github.com/ZSGaming/HyperConomy/tree/master/</url>
 	</scm>
 	<dependencies>
 		<dependency>
-          	<groupId>org.spigotmc</groupId>
-         	<artifactId>spigot-api</artifactId>
-         	<version>1.13.2-R0.1-SNAPSHOT</version>
-			<scope>provided</scope>
+			<groupId>com.github.MilkBowl</groupId>
+			<artifactId>VaultAPI</artifactId>
+			<version>1.7</version>
 		</dependency>
 		<dependency>
-			<groupId>net.milkbowl.vault</groupId>
-			<artifactId>Vault</artifactId>
-			<version>1.6.6</version>
+			<groupId>com.destroystokyo.paper</groupId>
+			<artifactId>paper-api</artifactId>
+			<version>1.14.2-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>regalowl.simpledatalib</groupId>
-			<artifactId>simpledatalib</artifactId>
-			<version>0.1.088-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.xerial</groupId>
@@ -70,42 +55,6 @@
 			<groupId>org.yaml</groupId>
 			<artifactId>snakeyaml</artifactId>
 			<version>1.15</version>
-		</dependency>
-				<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-continuation</artifactId>
-			<version>8.1.9.v20130131</version>
-			<scope>provided</scope>
-				</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-http</artifactId>
-			<version>8.1.9.v20130131</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-io</artifactId>
-			<version>8.1.9.v20130131</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-server</artifactId>
-			<version>8.1.9.v20130131</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-util</artifactId>
-			<version>8.1.9.v20130131</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-servlet</artifactId>
-			<version>8.1.9.v20130131</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
