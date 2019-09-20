@@ -1,8 +1,6 @@
 <component name="libraryTable">
   <library name="simpledatalib">
-    <CLASSES>
-      <root url="jar://D:/Libs/simpledatalib.zip!/" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>

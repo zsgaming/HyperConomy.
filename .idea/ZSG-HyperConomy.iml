@@ -20,7 +20,16 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="simpledatalib" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://D:/Libs/regalowl" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="regalowl" level="project" />
     <orderEntry type="library" name="Maven: com.github.MilkBowl:VaultAPI:1.7" level="project" />
     <orderEntry type="library" name="Maven: org.bukkit:bukkit:1.13.1-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.destroystokyo.paper:paper-api:1.14.2-R0.1-SNAPSHOT" level="project" />
@@ -35,6 +44,14 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.ow2.asm:asm-analysis:7.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.xerial:sqlite-jdbc:3.7.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: mysql:mysql-connector-java:5.1.44" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.jetty:jetty-servlet:8.1.9.v20130131" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.jetty:jetty-security:8.1.9.v20130131" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.jetty:jetty-server:8.1.9.v20130131" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.jetty:jetty-continuation:8.1.9.v20130131" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.jetty:jetty-http:8.1.9.v20130131" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.jetty:jetty-io:8.1.9.v20130131" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.jetty:jetty-util:8.1.9.v20130131" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: net.sf.opencsv:opencsv:2.3" level="project" />
     <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.15" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" level="project" />

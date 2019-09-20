@@ -1,30 +1,9 @@
 package regalowl.hyperconomy.bukkit;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.logging.Logger;
-
-import net.milkbowl.vault.Vault;
 import net.milkbowl.vault.economy.Economy;
-
 import org.apache.commons.lang.WordUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.GameMode;
-import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.World;
-import org.bukkit.Location;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.Chest;
-import org.bukkit.block.Sign;
+import org.bukkit.*;
+import org.bukkit.block.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
@@ -43,7 +22,6 @@ import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
-import org.bukkit.Material;
 import regalowl.hyperconomy.HyperConomy;
 import regalowl.hyperconomy.InternalEconomy;
 import regalowl.hyperconomy.account.HyperPlayer;
@@ -61,6 +39,11 @@ import regalowl.hyperconomy.minecraft.HBlock;
 import regalowl.hyperconomy.minecraft.HItem;
 import regalowl.hyperconomy.minecraft.HLocation;
 import regalowl.hyperconomy.minecraft.HSign;
+
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.logging.Logger;
 @SuppressWarnings("deprecation")
 public class BukkitConnector extends JavaPlugin implements MineCraftConnector, Listener {
 
@@ -146,7 +129,7 @@ public class BukkitConnector extends JavaPlugin implements MineCraftConnector, L
 	@Override
 	public void checkExternalEconomyRegistration() {
 		Plugin vault = getServer().getPluginManager().getPlugin("Vault");
-		vaultInstalled = (vault != null & vault instanceof Vault) ? true:false;
+		vaultInstalled = (vault != null & vault instanceof Economy ) ? true:false;
 		useExternalEconomy = hc.gYH().getFileConfiguration("config").getBoolean("economy-plugin.use-external");
 		if (!vaultInstalled) useExternalEconomy = false;
 		if (!useExternalEconomy && vaultInstalled && hc.gYH().gFC("config").getBoolean("economy-plugin.hook-internal-economy-into-vault")) {
