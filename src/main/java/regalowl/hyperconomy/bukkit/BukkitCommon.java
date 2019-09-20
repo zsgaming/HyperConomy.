@@ -182,8 +182,8 @@ public class BukkitCommon {
 		for (BlockFace cface : planeFaces) {
 			Block block = b.getRelative(cface);
 			if (block.getType().equals(Material.OAK_WALL_SIGN)) {
-				org.bukkit.material.Sign sign = (org.bukkit.material.Sign) block.getState().getData();
-				BlockFace attachedface = sign.getFacing();
+				Sign sign = (Sign) block.getState().getData();
+				BlockFace attachedface = sign.getfacing();
 				if (block.getRelative(attachedface.getOppositeFace()).equals(b)) {
 					Sign s = (Sign) block.getState();
 					ArrayList<String> lines = new ArrayList<String>();
