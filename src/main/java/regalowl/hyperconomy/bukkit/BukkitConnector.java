@@ -581,7 +581,7 @@ public class BukkitConnector extends JavaPlugin implements MineCraftConnector, L
 	public boolean canHoldChestShopSign(HLocation l) {
 		Block b = common.getBlock(l);
 		Material m = b.getType();
-		if (m == Material.ICE || m == Material.OAK_LEAVES || m == Material.SAND || m == Material.GRAVEL || m == Material.SIGN || m == Material.SIGN || m == Material.TNT) {
+		if (m == Material.ICE || m == Material.OAK_LEAVES || m == Material.SAND || m == Material.GRAVEL || m == Material.OAK_WALL_SIGN  || m == Material.OAK_SIGN || m == Material.TNT) {
 			return false;
 		}
 		return true;
@@ -604,9 +604,9 @@ public class BukkitConnector extends JavaPlugin implements MineCraftConnector, L
 	public HSign getSign(HLocation location) {
 		if (location == null) return null;
 		Block b = common.getLocation(location).getBlock();
-		if (b != null && (b.getType().equals(Material.SIGN) || b.getType().equals(Material.WALL_SIGN))) {
+		if (b != null && (b.getType().equals(Material.OAK_SIGN) || b.getType().equals(Material.OAK_WALL_SIGN))) {
 			Sign s = (Sign) b.getState();
-			boolean isWallSign = (b.getType().equals(Material.WALL_SIGN)) ? true:false;
+			boolean isWallSign = (b.getType().equals(Material.OAK_WALL_SIGN)) ? true:false;
 			ArrayList<String> lines = new ArrayList<String>();
 			for (String l:s.getLines()) {
 				lines.add(l);
