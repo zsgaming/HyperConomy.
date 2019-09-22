@@ -22,6 +22,7 @@ import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.enchantments.Enchantment;
 
 import org.bukkit.entity.EntityType;
@@ -43,6 +44,7 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.inventory.meta.Repairable;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.inventory.meta.SpawnEggMeta;
+import org.bukkit.material.Directional;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -82,13 +84,13 @@ public class BukkitCommon {
 	protected static final BlockFace[] planeFaces = {BlockFace.EAST, BlockFace.WEST, BlockFace.NORTH, BlockFace.SOUTH};
 	protected static final BlockFace[] allFaces = {BlockFace.EAST, BlockFace.WEST, BlockFace.NORTH, BlockFace.SOUTH, BlockFace.DOWN, BlockFace.UP};
 	private HyperConomy hc;
-	
+
 	protected BukkitCommon(HyperConomy hc) {
 		this.hc = hc;
 	}
-	
-	
-	
+
+
+
 	protected Location getLocation(HLocation l) {
 		if (l == null) return null;
 		return new Location(Bukkit.getWorld(l.getWorld()), l.getX(), l.getY(), l.getZ());
@@ -98,19 +100,19 @@ public class BukkitCommon {
 		if (l == null) return null;
 		return new HLocation(l.getWorld().getName(), l.getX(), l.getY(), l.getZ());
 	}
-	
+
 	protected Block getBlock(HLocation location) {
 		if (location == null) return null;
 		Location l = getLocation(location);
 		return l.getBlock();
 	}
-	
+
 	protected HBlock getBlock(Block b) {
 		if (b == null) return null;
 		HLocation l = getLocation(b.getLocation());
 		return new HBlock(hc, l);
 	}
-	
+
 	protected Sign getSign(HLocation l) {
 		if (l == null) return null;
 		BlockState bs = getBlock(l).getState();
@@ -119,11 +121,11 @@ public class BukkitCommon {
 		}
 		return null;
 	}
-	
+
 
 	protected boolean isTransactionSign(HLocation l) {
 		Block b = getBlock(l);
-		if (b != null && b.getType().equals(Material.OAK_SIGN) || b != null && b.getType().equals(Material.OAK_WALL_SIGN)) {
+		if (b != null && b.getType().equals(Material.OAK_SIGN) || b != null && b.getType().equals(Material.OAK_SIGN)) {
 			Sign s = (Sign) b.getState();
 			String line3 = ChatColor.stripColor(s.getLine(2)).trim();
 			if (line3.equalsIgnoreCase("[sell:buy]") || line3.equalsIgnoreCase("[sell]") || line3.equalsIgnoreCase("[buy]")) {
@@ -142,7 +144,7 @@ public class BukkitCommon {
 		}
 		return false;
 	}
-	
+
 	protected boolean isChestShopChest(HLocation l) {
 		Block b = getBlock(l);
 		if (b == null) return false;
@@ -153,7 +155,7 @@ public class BukkitCommon {
 		if (!isChestShopSign(sl)) return false;
 		return true;
 	}
-	
+
 	protected boolean isChestShopSign(HLocation l) {
 		Block b = getBlock(l);
 		if (b == null) return false;
@@ -168,31 +170,28 @@ public class BukkitCommon {
 		if (!(cb.getState() instanceof Chest)) return false;
 		return true;
 	}
-	
+
 	protected boolean isChestShopSignBlock(HLocation l) {
 		HSign sign = getAttachedSign(l);
 		if (sign == null) return false;
 		if (!isChestShopSign(sign.getLocation())) return false;
 		return true;
 	}
-	
+
 	protected HSign getAttachedSign(HLocation l) {
 		Block b = getBlock(l);
-		if (b == null) return null;
-		for (BlockFace cface : planeFaces) {
-			Block block = b.getRelative(cface);
-			if (block.getType().equals(Material.OAK_WALL_SIGN)) {
-				Sign sign = (Sign) block.getState().getData();
-				BlockFace attachedface = sign.getfacing();
-				if (block.getRelative(attachedface.getOppositeFace()).equals(b)) {
-					Sign s = (Sign) block.getState();
-					ArrayList<String> lines = new ArrayList<String>();
-					for (String li:s.getLines()) {
-						lines.add(li);
-					}
-					HLocation sl = getLocation(s.getLocation());
-					return new HSign(hc, sl, lines, true);
+		if (b != null && b.getState() instanceof Sign) {
+			BlockData data = b.getBlockData();
+			if (data instanceof Directional) {
+				Directional directional = (Directional) data;
+				Block blockBehind = b.getRelative(directional.getFacing().getOppositeFace());
+				Sign s = (Sign) b.getState();
+				ArrayList<String> lines = new ArrayList<String>();
+				for (String li : s.getLines()) {
+					lines.add(li);
 				}
+				HLocation sl = getLocation(s.getLocation());
+				return new HSign(hc, sl, lines, true);
 			}
 		}
 		return null;
@@ -228,7 +227,7 @@ public class BukkitCommon {
 
 	protected Player getPlayer(HyperPlayer hp) {
 		if (hp.getName() == null) return null;
-		return Bukkit.getPlayer(hp.getName());
+		return Bukkit.getPlayerExact(hp.getName());
 	}
 	
 	
@@ -236,7 +235,7 @@ public class BukkitCommon {
 	
 	protected HInventory getInventory(HyperPlayer hp) {
 		if (hp == null) return null;
-		Player p = Bukkit.getPlayer(hp.getName());
+		Player p = Bukkit.getPlayerExact(hp.getName());
 		return getInventory(p.getInventory());
 	}
 
@@ -296,7 +295,7 @@ public class BukkitCommon {
 		Player p = null;
 		if (inventory.getInventoryType() == HInventoryType.PLAYER) {
 			HyperPlayer hp = inventory.getHyperPlayer();
-			p = Bukkit.getPlayer(hp.getName());
+			p = Bukkit.getPlayerExact(hp.getName());
 			p.getInventory().setHeldItemSlot(inventory.getHeldSlot());
 			currentInventory = getInventory(hp).getItems();
 			bukkitInv = p.getInventory();
@@ -322,7 +321,7 @@ public class BukkitCommon {
 	
 	
 	protected void setItem(HyperPlayer hp, HItemStack item, int slot) {
-		Player p = Bukkit.getPlayer(hp.getName());
+		Player p = Bukkit.getPlayerExact(hp.getName());
 		if (p == null) return;
 		Inventory bukkitInv = p.getInventory();
 		if (item.isBlank()) {
@@ -357,7 +356,7 @@ public class BukkitCommon {
 	}
 	protected void setItemQuantity(HyperPlayer hp, int amount, int slot) {
 		if (hp == null) return;
-		Player p = Bukkit.getPlayer(hp.getName());
+		Player p = Bukkit.getPlayerExact(hp.getName());
 		Inventory bukkitInv = p.getInventory();
 		if (amount <= 0) {
 			bukkitInv.clear(slot);

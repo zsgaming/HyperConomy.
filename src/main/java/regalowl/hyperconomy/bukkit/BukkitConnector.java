@@ -4,6 +4,7 @@ import net.milkbowl.vault.economy.Economy;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.*;
 import org.bukkit.block.*;
+import org.bukkit.block.data.type.WallSign;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
@@ -848,5 +849,5 @@ public class BukkitConnector extends JavaPlugin implements MineCraftConnector, L
 
 
 
-	
+
 }
